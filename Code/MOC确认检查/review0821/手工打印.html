@@ -1,0 +1,349 @@
+#paiVmParse("commonPrintTemplate_head")
+<!-- 基本信息 -->
+<div class="bg-color">
+  <table class="title-border">
+    <tr align="left">
+      <td>
+        <div class="font-area">申请人信息</div>
+      </td>
+    </tr>
+  </table>
+</div>
+<div>
+  <table class="info-table" lign="left">
+    <colgroup>
+      <col style="width: 10%" />
+      <col style="width: 35%" />
+      <col style="width: 15%" />
+      <col style="width: 35%" />
+    </colgroup>
+    <tr align="left">
+      <td>
+        <div class="font-area">申请人</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.manualVoucherBasicInfo.applicantName}</div>
+      </td>
+      <td>
+        <div class="font-area">申请人部门</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.manualVoucherBasicInfo.applicantDeptName}</div>
+      </td>
+    </tr>
+    <tr align="left">
+      <td>
+        <div class="font-area">申请编号</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.manualVoucherBasicInfo.folio}</div>
+      </td>
+      <td>
+        <div class="font-area">申请日期</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.manualVoucherBasicInfo.applyDate}</div>
+      </td>
+    </tr>
+  </table>
+</div>
+<!-- 费用申请 -->
+<div class="bg-color">
+  <table class="title-border">
+    <tr align="left">
+      <td>
+        <div class="font-area">费用申请</div>
+      </td>
+    </tr>
+  </table>
+</div>
+<div>
+  <table class="info-table" lign="left">
+    <colgroup>
+      <col style="width: 10%" />
+      <col style="width: 35%" />
+      <col style="width: 15%" />
+      <col style="width: 35%" />
+    </colgroup>
+    <tr align="left">
+      <td>
+        <div class="font-area">标题</div>
+      </td>
+      <td colspan="3">
+        <div class="font-value-area" >${formData.manualVoucherBasicInfo.title}</div>
+      </td>
+    </tr>
+    <tr align="left">
+      <td>
+        <div class="font-area">凭证类型</div>
+      </td>
+      <td colspan="3">
+		#foreach($info in [{"label":"预提费用","value":"Accrual"},{"label":"固定费用转变动费用","value":"FC to VC"},{"label":"费用调整","value":"Adjustment"},{"label":"固定床催化剂摊销","value":"Catalyst amortization"},{"label":"产成品和原材料减值/处置","value":"Product and Feedstock impairment, disposal"},{"label":"备品备件和其他减值/处置","value":"Spare Parts and Others impairment, disposal"},{"label":"原材料损耗","value":"rawMaterialLoss"}])
+		  #if(${info.value}==${formData.manualVoucherBasicInfo.certificateType})
+      <input type="radio" disabled checked>$info.label</input>
+        #else
+		  <input type="radio" disabled>$info.label</input>
+		  #end
+		  
+      #end
+      </td>
+    </tr>
+   <tr align="left">
+		<td>
+		  <div class="font-area">付款货币</div>
+		</td>
+		<td col>
+		  <div class="font-value-area" >${formData.manualVoucherBasicInfo.currencyPayment}</div>
+		</td>
+      #if(${formData.manualVoucherBasicInfo.certificateType}=="FC to VC"||${formData.manualVoucherBasicInfo.certificateType}=="Accrual")
+     	<td>
+		  <div class="font-area">类别</div>
+		</td>
+		<td col>
+		  <div class="font-value-area">${formData.manualVoucherBasicInfo.category}</div>
+		</td>
+      #else
+	   	<td colspan="2">
+		  <div class="font-area"></div>
+		</td>
+	    #end
+	  </tr>
+   <tr align="left">
+		<td>
+		  <div class="font-area">其它部门</div>
+		</td>
+		<td col>
+       #if(${formData.manualVoucherBasicInfo.otherDept} == "1")
+        <div class="font-area">
+          <div><input type="radio" disabled >是</input>
+            <input type="radio" disabled checked>否</input>
+          </div>
+        </div>
+        #else
+        <div class="font-area">
+          <div><input type="radio" disabled checked>是</input>
+            <input type="radio" disabled >否</input>
+          </div>
+        </div>
+        #end
+		</td>
+
+      #if(${formData.manualVoucherBasicInfo.otherDept}=="0")
+      <td>
+		  <div class="font-area">选择其它部门</div>
+		</td>
+		<td>
+		  <div class="font-value-area">${formData.manualVoucherBasicInfo.chooseOtherDeptName}</div>
+		</td>
+      #else
+	    <td colspan="2">
+		  <div class="font-area"></div>
+		</td>
+	    #end
+	  </tr>
+  <tr align="left">
+		<td>
+		  <div class="font-area">凭证日期</div>
+		</td>
+		<td>
+		  <div class="font-value-area">${formData.manualVoucherBasicInfo.certificateDate}</div>
+		</td>
+		<td>
+		  <div class="font-area">过账日期</div>
+		</td>
+		<td>
+		  <div class="font-value-area">${formData.manualVoucherBasicInfo.postingDate}</div>
+		</td>
+	  </tr>
+  <tr align="left">
+		<td>
+		  <div class="font-area">FNC Check</div>
+		</td>
+		<td>
+		  <div class="font-value-area">${formData.manualVoucherBasicInfo.fncCheckName}</div>
+		</td>
+		<td>
+		  <div class="font-area">SAP凭证号</div>
+		</td>
+		<td>
+		  <div class="font-value-area">${formData.manualVoucherBasicInfo.sapvoucherNum}</div>
+		</td>
+	  </tr>
+  </table>
+</div>
+
+<!-- 基础信息 -->
+<div class="bg-color">
+  <table class="title-border">
+    <tr align="left">
+      <td>
+        <div class="font-area">基础信息</div>
+      </td>
+    </tr>
+  </table>
+</div>
+<div class="bank-detail-box" >
+  <div style="line-height: 40px;border-bottom:1px solid #999"><font style="padding-left:10px;">Dr 全部金额:${formData.manualVoucherBasicInfo.drAmount}</font> <font style="padding-left:10px;">Cr 全部金额:${formData.manualVoucherBasicInfo.crAmount}</font></div>
+  <table>
+    <colgroup>
+      <col style="width: 10%" />
+      <col style="width: 8%" />
+      <col style="width: 8%" />
+      <col style="width: 8%" />
+      <col style="width: 8%" />
+      <col style="width: 8%" />
+		<col style="width: 10%" />
+		<col style="width: 10%" />
+	   <col style="width: 10%" />
+		<col style="width: 5%" />
+		<col style="width: 5%" />
+		<col style="width: 10%" />
+    </colgroup>
+    <tr>
+      <td>
+        <div class="font-area-Center">描述</div>
+      </td>
+      <td>
+        <div class="font-area-Center">借方/贷方</div>
+      </td>
+      <td>
+        <div class="font-area-Center">Cost Element</div>
+      </td>
+      <td>
+        <div class="font-area-Center">金额</div>
+      </td>
+      <td>
+        <div class="font-area-Center">成本对象</div>
+      </td>
+      <td>
+        <div class="font-area-Center">Cost Object No.</div>
+      </td>
+       <td>
+        <div class="font-area-Center">类别</div>
+      </td>
+        <td>
+        <div class="font-area-Center">PO/PR No</div>
+      </td>
+       <td>
+        <div class="font-area-Center">抬头</div>
+      </td>
+       <td>
+        <div class="font-area-Center">数量</div>
+      </td>
+       <td>
+        <div class="font-area-Center">单位</div>
+      </td>
+       <td>
+        <div class="font-area-Center">意见</div>
+      </td>
+    </tr>
+    #foreach($info in ${formData.manualVoucherDetailInfo})
+    <tr>
+      <td>
+        <div class="font-value-area">${info.description}</div>
+      </td>
+      <td>
+        <div class="font-value-area">${info.debitCredit}</div>
+      </td>
+      <td>
+        <div class="font-value-area">${info.costElement}</div>
+      </td>
+      <td>
+        <div class="font-value-area">${info.amount}</div>
+      </td>
+      <td>
+        <div class="font-value-area">${info.costObject}</div>
+      </td>
+      <td>
+        <div class="font-value-area">${info.costNo}</div>
+      </td>
+       <td>
+        <div class="font-value-area">${info.type}</div>
+      </td>
+       <td>
+        <div class="font-value-area">${info.poPr}</div>
+      </td>
+       <td>
+        <div class="font-value-area">${info.rise}</div>
+      </td>
+       <td>
+        <div class="font-value-area">${info.num}</div>
+      </td>
+       <td>
+        <div class="font-value-area">${info.unit}</div>
+      </td>
+       <td>
+        <div class="font-value-area">${info.comments}</div>
+      </td>
+
+    </tr>
+    #end
+  </table>
+   <div style="line-height: 40px;">抄送人员:<font>${formData.manualVoucherBasicInfo.ccPersonnelName}</font></div>
+</div>
+<!-- 附件信息 -->
+<div class="bg-color">
+  <table class="title-border">
+    <tr align="left">
+      <td>
+        <div class="font-area">附件信息</div>
+      </td>
+    </tr>
+  </table>
+</div>
+<div class="bank-detail-box" style="padding-bottom:0;  border-bottom: none;">
+  <table class="info-table" style="margin-bottom:0; border-bottom: none;">
+    <colgroup>
+      <col style="width: 15%" />
+      <col style="width: 10%" />
+      <col style="width: 20%" />
+      <col style="width: 15%" />
+      <col style="width: 15%" />
+      <col style="width: 15%" />
+    </colgroup>
+    <tr>
+      <td>
+        <div class="font-area-Center">附件名称</div>
+      </td>
+      <td>
+        <div class="font-area-Center">文件类型</div>
+      </td>
+      <td>
+        <div class="font-area-Center">上传时间</div>
+      </td>
+      <td>
+        <div class="font-area-Center">节点名称</div>
+      </td>
+      <td>
+        <div class="font-area-Center">上传人名称</div>
+      </td>
+      <td>
+        <div class="font-area-Center">备注</div>
+      </td>
+    </tr>
+    #foreach($info in ${formData.fileInfo})
+    <tr>
+      <td>
+        <div class="font-value-area">${info.fileName}</div>
+      </td>
+      <td>
+        <div class="font-value-area">${info.fileType}</div>
+      </td>
+      <td>
+        <div class="font-value-area">${info.uploadDate}</div>
+      </td>
+      <td>
+        <div class="font-value-area">${info.nodeName}</div>
+      </td>
+      <td>
+        <div class="font-value-area">${info.employeeName}</div>
+      </td>
+      <td>
+        <div class="font-value-area">${info.remark}</div>
+      </td>
+    </tr>
+    #end
+  </table>
+</div>
+
+#paiVmParse("commonPrintTemplate_end")

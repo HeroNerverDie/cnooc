@@ -1,0 +1,384 @@
+#paiVmParse("commonPrintTemplate_head")
+<!-- 基本信息 -->
+<div class="bg-color">
+  <table class="title-border">
+    <tr align="left">
+      <td>
+        <div class="font-area">Apply Information </div>
+      </td>
+    </tr>
+  </table>
+</div>
+<div>
+  <table class="info-table" lign="left">
+    <colgroup>
+      <col style="width: 10%" />
+      <col style="width: 35%" />
+      <col style="width: 15%" />
+      <col style="width: 35%" />
+    </colgroup>
+    <tr align="left">
+      <td>
+        <div class="font-area">Requestor</div>
+      </td>
+      <td>
+        <div class="font-value-area">${customKey.formInfo.requestor}</div>
+      </td>
+      <td>
+        <div class="font-area">Requestor Dept.</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocImplementationRequestBasicInfo.applicantDeptName}</div>
+      </td>
+    </tr>
+    <tr align="left">
+      <td>
+        <div class="font-area">Process No.</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocImplementationRequestBasicInfo.folio}</div>
+      </td>
+      <td>
+        <div class="font-area">Request Date</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocImplementationRequestBasicInfo.applyDate}</div>
+      </td>
+    </tr>
+  </table>
+</div>
+<!-- 变更信息 -->
+<div class="bg-color">
+  <table class="title-border">
+    <tr align="left">
+      <td>
+        <div class="font-area">MOC Information</div>
+      </td>
+    </tr>
+  </table>
+</div>
+<div>
+  <table class="info-table" lign="left">
+    <colgroup>
+      <col style="width: 15%" />
+      <col style="width: 35%" />
+      <col style="width: 15%" />
+      <col style="width: 35%" />
+    </colgroup>
+    #if(${customKey.formInfo.currentNode} == "010_Applicant confirmation")
+    <tr align="left">
+      <td colspan="2"></td>
+      <td colspan="2">
+        <div class="font-value-area"><button>Select MOC for Implementation Review</button></div>
+      </td>
+    </tr>
+    #end
+    <tr align="left">
+      <td>
+        <div class="font-area">MOC Number</div>
+      </td>
+      <td>
+        <div class="font-value-area"><a href="">${formData.mocImplementationRequestBasicInfo.mocNumber}</a></div>
+      </td>
+      <td>
+        <div class="font-area">MOC Type</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocImplementationRequestBasicInfo.mocType}</div>
+      </td>
+    </tr>
+    #if(${formData.mocImplementationRequestBasicInfo.mocType} == "MSMRMOC" ||
+    ${formData.mocImplementationRequestBasicInfo.mocType} == "PMOC")
+    #if(${customKey.formInfo.currentNode} == "020_Readiness Review"))
+    <tr align="left">
+      <td>
+        <div class="font-area">Target date</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocImplementationRequestBasicInfo.targetDate}</div>
+      </td>
+      <td colspan="2"></td>
+    </tr>
+    #else
+    <tr align="left">
+      <td>
+        <div class="font-area">Target date</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocImplementationRequestBasicInfo.targetDate}</div>
+      </td>
+      <td>
+        <div class="font-area">Operating Nominee</div>
+      </td>
+      <td>
+        <div class="font-value-area">${customKey.formInfo.operatingNominee}</div>
+      </td>
+    </tr>
+    #end
+    #else
+    <tr align="left">
+      <td>
+        <div class="font-area">Target date</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocImplementationRequestBasicInfo.targetDate}</div>
+      </td>
+      <td>
+        <div class="font-area">Operating Nominee</div>
+      </td>
+      <td>
+        <div class="font-value-area">${customKey.formInfo.operatingNominee}</div>
+      </td>
+    </tr>
+    #end
+    #if(${formData.mocImplementationRequestBasicInfo.mocType} == "MSMRMOC" ||
+    ${formData.mocImplementationRequestBasicInfo.mocType} == "PMOC")
+    <tr align="left">
+      <td colspan="2"></td>
+      <td>
+        <div class="font-area">Implementation Confirm</div>
+      </td>
+      <td>
+        <div class="font-value-area">${customKey.formInfo.implementationConfirm}</div>
+      </td>
+    </tr>
+    #end
+    #if(${customKey.formInfo.currentNode} != "010_Applicant confirmation")
+    <tr align="left">
+      <td>
+        <div class="font-area">Readiness done date</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocImplementationRequestBasicInfo.readinessDoneDate}</div>
+      </td>
+      <td colspan="2"></td>
+    </tr>
+    #end
+    #if(${formData.mocImplementationRequestBasicInfo.mocType} != "MSMRMOC" &&
+    ${formData.mocImplementationRequestBasicInfo.mocType} != "PMOC" && ${customKey.formInfo.currentNode} !=
+    "010_Applicant confirmation")
+    <tr align="left">
+      <td>
+        <div class="font-area">TMOC due date</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocImplementationRequestBasicInfo.tmocDueDate}</div>
+      </td>
+      <td colspan="2"></td>
+    </tr>
+    #end
+    #if(${customKey.formInfo.currentNode} != "010_Applicant confirmation")
+    <tr align="left">
+      <td>
+        <div class="font-area">MOC Service Date</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocImplementationRequestBasicInfo.mocServiceDate}</div>
+      </td>
+      <td colspan="2"></td>
+    </tr>
+    #end
+    #if(${formData.mocImplementationRequestBasicInfo.mocType} != "MSMRMOC" &&
+    ${formData.mocImplementationRequestBasicInfo.mocType} != "PMOC" && ${customKey.formInfo.currentNode} !=
+    "010_Applicant confirmation" && ${customKey.formInfo.currentNode} != "020_Readiness Review")
+    <tr align="left">
+      <td>
+        <div class="font-area">TMOC reinstate date</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocImplementationRequestBasicInfo.tmocReinstateDate}</div>
+      </td>
+      <td colspan="2"></td>
+    </tr>
+    #end
+    <tr align="left">
+      <td>
+        <div class="font-area">Cc</div>
+      </td>
+      <td colspan="3">
+        <div class="font-value-area">${customKey.formInfo.ccDisplayName}</div>
+      </td>
+    </tr>
+  </table>
+</div>
+#if((${formData.mocImplementationRequestBasicInfo.mocType} == "PMOC" ||
+${formData.mocImplementationRequestBasicInfo.mocType} == "TMOC") && ${customKey.formInfo.currentNode} != "010_Applicant
+confirmation")
+<!-- 现场检查确认表 -->
+<div class="bg-color">
+  <table class="title-border">
+    <tr align="left">
+      <td>
+        <div class="font-area">Field Verification Checklist </div>
+      </td>
+    </tr>
+  </table>
+</div>
+<div>
+  <table class="info-table" style="margin-bottom:0; border-bottom: none;">
+    <colgroup>
+      <col style="width: 5%" />
+      <col style="width: 75%" />
+      <col style="width: 20%" />
+    </colgroup>
+    <tr>
+      <td>
+        <div class="font-area-Center"></div>
+      </td>
+      <td>
+        <div class="font-area-Center"></div>
+      </td>
+      <td>
+        <div class="font-area-Center">*</div>
+      </td>
+    </tr>
+    #foreach($info in ${formData.mocFieldVerificationChecklist})
+    <tr>
+      <td>
+        <div class="font-value-area">${info.serialNumber}</div>
+      </td>
+      <td>
+        <div class="font-value-area">${info.content}</div>
+      </td>
+      <td>
+        <div class="font-value-area">${info._selectResult}</div>
+      </td>
+    </tr>
+    #end
+  </table>
+</div>
+#end
+
+#if((${formData.mocImplementationRequestBasicInfo.mocType} == "PMOC" ||
+${formData.mocImplementationRequestBasicInfo.mocType} == "TMOC") && ${customKey.formInfo.currentNode} != "010_Applicant
+confirmation")
+<!-- 准备就绪审查清单 -->
+<div class="bg-color">
+  <table class="title-border">
+    <tr align="left">
+      <td>
+        <div class="font-area">Readiness Review Checklist</div>
+      </td>
+    </tr>
+  </table>
+</div>
+<div>
+  <table class="info-table" style="margin-bottom:0; border-bottom: none;">
+    <colgroup>
+      <col style="width: 5%" />
+      <col style="width: 75%" />
+      <col style="width: 20%" />
+    </colgroup>
+    <tr>
+      <td>
+        <div class="font-area-Center"></div>
+      </td>
+      <td>
+        <div class="font-area-Center"></div>
+      </td>
+      <td>
+        <div class="font-area-Center">*</div>
+      </td>
+    </tr>
+    #foreach($info in ${formData.mocReadinessReviewChecklist})
+    <tr>
+      <td>
+        <div class="font-value-area">${info.serialNumber}</div>
+      </td>
+      <td>
+        <div class="font-value-area">${info.content}</div>
+      </td>
+      <td>
+        <div class="font-value-area">${info._selectResult}</div>
+      </td>
+    </tr>
+    #end
+  </table>
+</div>
+#end
+<!-- 确认项目 -->
+<div class="bg-color">
+  <table class="title-border">
+    <tr align="left">
+      <td>
+        <div class="font-area">Confirm Items</div>
+      </td>
+    </tr>
+  </table>
+</div>
+<div>
+  <table class="title-border">
+    <tr align="left">
+      <td>
+        <div class="font-value-area"><label><input type="checkbox" checked>${customKey.formInfo.requireProject}</label>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+<!-- 附件信息 -->
+<div class="bg-color">
+  <table class="title-border">
+    <tr align="left">
+      <td>
+        <div class="font-area">Attachment </div>
+      </td>
+    </tr>
+  </table>
+</div>
+<div class="bank-detail-box" style="padding-bottom:0;  border-bottom: none;">
+  <table class="info-table" style="margin-bottom:0; border-bottom: none;">
+    <colgroup>
+      <col style="width: 15%" />
+      <col style="width: 10%" />
+      <col style="width: 20%" />
+      <col style="width: 15%" />
+      <col style="width: 15%" />
+      <col style="width: 15%" />
+    </colgroup>
+    <tr>
+      <td>
+        <div class="font-area-Center">Attachment Name</div>
+      </td>
+      <td>
+        <div class="font-area-Center">File Type</div>
+      </td>
+      <td>
+        <div class="font-area-Center">Upload Time</div>
+      </td>
+      <td>
+        <div class="font-area-Center">Node Name</div>
+      </td>
+      <td>
+        <div class="font-area-Center">Uploader</div>
+      </td>
+      <td>
+        <div class="font-area-Center">Remark</div>
+      </td>
+    </tr>
+    #foreach($info in ${formData.fileInfo})
+    <tr>
+      <td>
+        <div class="font-value-area">${info.fileName}</div>
+      </td>
+      <td>
+        <div class="font-value-area">${info.fileType}</div>
+      </td>
+      <td>
+        <div class="font-value-area">${info.uploadDate}</div>
+      </td>
+      <td>
+        <div class="font-value-area">${info.nodeName}</div>
+      </td>
+      <td>
+        <div class="font-value-area">${info.employeeName}</div>
+      </td>
+      <td>
+        <div class="font-value-area">${info.remark}</div>
+      </td>
+    </tr>
+    #end
+  </table>
+</div>
+
+#paiVmParse("commonPrintTemplate_end")

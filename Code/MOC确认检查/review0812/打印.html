@@ -1,0 +1,1143 @@
+#paiVmParse("commonPrintTemplate_head")
+<!-- 基本信息 -->
+<div class="bg-color">
+  <table class="title-border">
+    <tr align="left">
+      <td>
+        <div class="font-area">申请人信息</div>
+      </td>
+    </tr>
+  </table>
+</div>
+<div>
+  <table class="info-table" lign="left">
+    <colgroup>
+      <col style="width: 20%" />
+      <col style="width: 30%" />
+      <col style="width: 20%" />
+      <col style="width: 30%" />
+    </colgroup>
+    <tr align="left">
+      <td>
+        <div class="font-area">申请人</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.requestorDisplayName}</div>
+      </td>
+      <td>
+        <div class="font-area">申请人部门</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.requestorDept}</div>
+      </td>
+    </tr>
+    <tr align="left">
+      <td>
+        <div class="font-area">流程编码</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.formInfo.folio}</div>
+      </td>
+      <td>
+        <div class="font-area">申请时间</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.requestDate}</div>
+      </td>
+    </tr>
+  </table>
+</div>
+<!-- 变更信息 -->
+<div class="bg-color">
+  <table class="title-border">
+    <tr align="left">
+      <td>
+        <div class="font-area">变更信息</div>
+      </td>
+    </tr>
+  </table>
+</div>
+<div>
+  <table class="info-table" lign="left">
+    <colgroup>
+      <col style="width: 20%" />
+      <col style="width: 30%" />
+      <col style="width: 20%" />
+      <col style="width: 30%" />
+    </colgroup>
+    <tr align="left">
+      <td>
+        <div class="font-area">变更编码</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.mocNumber}</div>
+      </td>
+	  <td colspan="2">
+        <div class="font-area"></div>
+      </td>
+    </tr>
+    <tr align="left">
+      <td>
+        <div class="font-area">变更类型</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.mocType}</div>
+      </td>
+	  #if(${formData.mocApprovalWorkflow.mocType}=="PMOC" ||
+	  ${formData.mocApprovalWorkflow.mocType}=="TMOC")
+      <td>
+        <div class="font-area">变更类别</div>
+      </td>	  
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.mocCategoryDisplayName}</div>
+      </td>
+	  #else
+	  <td colspan="2">
+        <div class="font-area"></div>
+      </td>
+	  #end
+    </tr>
+    <tr align="left">
+      <td>
+        <div class="font-area">工厂工程师</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.plantEngineerDisplayName}</div>
+      </td>
+	  <td colspan="2">
+        <div class="font-area"></div>
+      </td>
+    </tr>
+    <tr align="left">
+      <td>
+        <div class="font-area">装置</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.plant}</div>
+      </td>
+      <td>
+        <div class="font-area">单元</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.unitDisplayName}</div>
+      </td>
+    </tr>
+		#if(${formData.mocApprovalWorkflow.mocType}!="MSMRMOC")
+    <tr align="left">
+      <td>
+        <div class="font-area">变更程序主管</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.mocFocalPointDisplayName}</div>
+      </td>
+      <td>
+        <div class="font-area">(+/-)50%成本估算(元)</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.costEstimationRMB50}</div>
+      </td>
+    </tr>
+	  #end
+    <tr align="left">
+      <td>
+        <div class="font-area">紧急变更审查</div>
+      </td>
+      <td>
+	  #foreach($info in [{"label":"是","value":"yes"},{"label":"否","value":"no"}])
+		  #if(${info.value}==${formData.mocApprovalWorkflow.emergencyMOCreviewAfterlmplementation})
+      <input type="radio" disabled checked>$info.label</input>
+        #else
+		  <input type="radio" disabled>$info.label</input>
+		  #end
+      #end
+      </td>
+	  <td colspan="2">
+        <div class="font-area"></div>
+      </td>
+    </tr>
+    <tr align="left">
+      <td>
+        <div class="font-area">工艺工程师</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.processEngineerTechnologistMOCcInformationDisplayName}</div>
+      </td>
+	  <td colspan="2">
+        <div class="font-area"></div>
+      </td>
+    </tr>
+		#if(${formData.mocApprovalWorkflow.mocType}=="PMOC"||
+		${formData.mocApprovalWorkflow.mocType}=="TMOC")
+    <tr align="left">
+      <td>
+        <div class="font-area">变更优先级</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.mocPrioritizationDisplayName}</div>
+      </td>
+      <td colspan="2">
+        <div class="font-value-area">${formData.mocApprovalWorkflow.mocGradeDisplayName}</div>
+      </td>
+    </tr>
+	#end
+    <tr align="left">
+      <td>
+        <div class="font-area">变更标题</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.mocTitle}</div>
+      </td>
+	  #if(${formData.mocApprovalWorkflow.mocType}=="PMOC"||
+		${formData.mocApprovalWorkflow.mocType}=="TMOC")
+      <td>
+        <div class="font-area">(+/-)10%成本估算(元)</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.CostEstimationRMB10}</div>
+      </td>	
+	  #else
+	  <td colspan="2">
+        <div class="font-area"></div>
+      </td>
+		#end	  
+    </tr>
+    <tr align="left">
+      <td>
+        <div class="font-area">变更描述<br/>（包括变更的目的等）</div>
+      </td>
+      <td colspan="3">
+        <div class="font-value-area">${formData.mocApprovalWorkflow.mocDescription}</div>
+      </td>	  
+    </tr>
+    <tr align="left">
+      <td>
+        <div class="font-area">抄送</div>
+      </td>
+      <td colspan="3">
+        <div class="font-value-area">${formData.mocApprovalWorkflow.ccDisplayName}</div>
+      </td>
+    </tr>
+  </table>
+</div>
+<!-- 装置经理选择 -->
+#if(${formData.mocApprovalWorkflow.mocType}=="PMOC" ||
+${formData.mocApprovalWorkflow.mocType}=="TMOC" ||
+${formData.mocApprovalWorkflow.mocType}=="LSMOC" )
+<div class="bg-color">
+  <table class="title-border">
+    <tr align="left">
+      <td>
+        <div class="font-area">装置经理选择</div>
+      </td>
+    </tr>
+  </table>
+</div>
+<div>
+  <table class="info-table" lign="left">
+    <colgroup>
+      <col style="width: 20%" />
+      <col style="width: 30%" />
+      <col style="width: 20%" />
+      <col style="width: 30%" />
+    </colgroup>
+    <tr align="left">
+      <td>
+        <div class="font-area">装置经理</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.unitManagerDisplayName}</div>
+      </td>
+      <td colspan="2">
+        <div class="font-area"></div>
+      </td>
+    </tr>
+    <tr align="left">
+      <td>
+        <div class="font-area">其他装置经理-如有需要</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.otherUnitManagerifneedDisplayName}</div>
+      </td>
+      <td colspan="2">
+        <div class="font-area" ></div>
+      </td>
+    </tr>
+  </table>
+</div>
+#end
+<!-- 标准公用工程 -->
+#if(${formData.mocApprovalWorkflow.mocType}=="LSMOC" )
+<div class="bg-color">
+  <table class="title-border">
+    <tr align="left">
+      <td>
+        <div class="font-area">标准公用工程</div>
+      </td>
+    </tr>
+  </table>
+</div>
+<div >
+  <table>
+    <colgroup>
+      <col style="width: 8%" />
+      <col style="width: 20%" />
+      <col style="width: 15%" />
+      <col style="width: 15%" />
+      <col style="width: 15%" />
+      <col style="width: 15%" />
+      <col style="width: 10%" />
+    </colgroup>
+    <tr>
+      <td>
+        <div class="font-area-Center"></div>
+      </td>
+      <td>
+        <div class="font-area-Center">描述</div>
+      </td>
+      <td>
+        <div class="font-area-Center">设计压力(BarG)</div>
+      </td>
+      <td>
+        <div class="font-area-Center">设计温度(摄氏度)</div>
+      </td>
+      <td>
+        <div class="font-area-Center">操作压力（BarG</div>
+      </td>
+      <td>
+        <div class="font-area-Center">操作温度(摄氏度)</div>
+      </td>
+      <td>
+        <div class="font-area-Center">区域</div>
+      </td>
+    </tr>
+    #foreach($info in ${formData.mocStandardUtilityServices})
+    <tr>
+      <td>
+		#if(${info.isYes}=="yes" )
+        <div class="font-value-area">是</div>
+		#else
+        <div class="font-value-area">否</div>
+		#end
+      </td>
+      <td>
+        <div class="font-value-area">${info.description}</div>
+      </td>
+      <td>
+        <div class="font-value-area">${info.designPressBarG}</div>
+      </td>
+      <td>
+        <div class="font-value-area">${info.designTempDegC}</div>
+      </td>
+      <td>
+        <div class="font-value-area">${info.operPressBarG}</div>
+      </td>
+      <td>
+        <div class="font-value-area">${info.operTempDegC}</div>
+      </td>
+      <td>
+        <div class="font-value-area">${info.area}</div>
+      </td>
+    </tr>
+    #end
+  </table>
+</div>
+#end
+<!-- 组成 -->
+#if(${formData.mocApprovalWorkflow.mocType}=="LSMOC" )
+<div class="bg-color">
+  <table class="title-border">
+    <tr align="left">
+      <td>
+        <div class="font-area">组成</div>
+      </td>
+    </tr>
+  </table>
+</div>
+<div >
+ <table>
+    <colgroup>
+      <col style="width: 8%" />
+      <col style="width: 8%" />
+      <col style="width: 8%" />
+      <col style="width: 8%" />
+      <col style="width: 8%" />
+    </colgroup>
+	<thead>
+		<tr>
+			<th rowspan="2">参数</th>
+			<th colspan="2">压力</th>
+			<th colspan="2">温度</th>
+		</tr>
+		<tr>
+			<th>最大Bar G</th>
+			<th>最小Bar G</th>
+			<th>最大摄氏度</th>
+			<th>最小摄氏度</th>
+		</tr>
+	</thead>
+    #foreach($info in ${formData.mocFluidComposition})
+    <tr>
+      <td>
+        <div class="font-value-area">${info.parameters}</div>
+      </td>
+      <td>
+        <div class="font-value-area">${info.maxBarG}</div>
+      </td>
+      <td>
+        <div class="font-value-area">${info.minBarG}</div>
+      </td>
+      <td>
+        <div class="font-value-area">${info.maxDegC}</div>
+      </td>
+      <td>
+        <div class="font-value-area">${info.minDegC}</div>
+      </td>
+    </tr>
+    #end
+  </table>
+</div>
+#end
+<!-- 技术评估 -->
+#if(${formData.mocApprovalWorkflow.mocType}=="LSMOC" )
+<div class="bg-color">
+  <table class="title-border">
+    <tr align="left">
+      <td>
+        <div class="font-area">技术评估</div>
+      </td>
+    </tr>
+  </table>
+</div>
+<div >
+  <table>
+    <colgroup>
+      <col style="width: 8%" />
+      <col style="width: 8%" />
+      <col style="width: 80%" />
+    </colgroup>
+    #foreach($info in ${formData.mocTechnicalAssessment})
+    <tr>
+      <td>
+		#if(${info.yesOrNO}=="yes" )
+        <div class="font-value-area">是</div>
+		#end
+		
+		#if(${info.yesOrNO}=="no" )
+        <div class="font-value-area">否</div>
+		#end
+		
+		#if(${info.yesOrNO}=="n/a" )
+        <div class="font-value-area">N/A</div>
+		#end
+      </td>
+      <td>
+        <div class="font-value-area">${info.orders}</div>
+      </td>
+      <td>
+        <div class="font-value-area">${info.assessmentContent_zh}</div>
+      </td>
+    </tr>
+    #end
+  </table>
+</div>
+#end
+<!-- 工程评估 -->
+#if(${formData.mocApprovalWorkflow.mocType}=="PMOC" ||
+${formData.mocApprovalWorkflow.mocType}=="TMOC" ||
+${formData.mocApprovalWorkflow.mocType}=="LSMOC" )
+<div class="bg-color">
+  <table class="title-border">
+    <tr align="left">
+      <td>
+        <div class="font-area">工程评估</div>
+      </td>
+    </tr>
+  </table>
+</div>
+<div >
+  <table>
+    <colgroup>
+      <col style="width: 8%" />
+      <col style="width: 8%" />
+      <col style="width: 80%" />
+    </colgroup>
+    #foreach($info in ${formData.mocEngineeringAssessment})
+    <tr>
+      <td>
+		#if(${info.yesOrNO}=="yes" )
+        <div class="font-value-area">是</div>
+		#end
+		
+		#if(${info.yesOrNO}=="no" )
+        <div class="font-value-area">否</div>
+		#end
+		
+		#if(${info.yesOrNO}=="n/a" )
+        <div class="font-value-area">N/A</div>
+		#end
+      </td>
+      <td>
+        <div class="font-value-area">${info.orders}</div>
+      </td>
+      <td>
+        <div class="font-value-area">${info.assessmentContent_zh}</div>
+      </td>
+    </tr>
+    #end
+  </table>
+</div>
+#end
+<!-- 技术审批者选择 -->
+<div class="bg-color">
+  <table class="title-border">
+    <tr align="left">
+      <td>
+        <div class="font-area">技术审批者选择</div>
+      </td>
+    </tr>
+  </table>
+</div>
+<div >
+<table class="info-table" lign="left">
+    <colgroup>
+      <col style="width: 20%" />
+      <col style="width: 30%" />
+      <col style="width: 20%" />
+      <col style="width: 30%" />
+    </colgroup>
+	#if(${formData.mocApprovalWorkflow.mocType}=="PMOC" ||
+	${formData.mocApprovalWorkflow.mocType}=="TMOC" )
+    <tr align="left">
+      <td>
+        <div class="font-area">授权仪表工程师</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.authorizedInstrumentEngineer}</div>
+      </td>
+      <td>
+        <div class="font-area">工艺工程师</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.processEngineerTechnologistDisplayName}</div>
+      </td>
+    </tr>
+	#end
+    <tr align="left">
+	#if(${formData.mocApprovalWorkflow.mocType}!="MSMRMOC" )
+      <td>
+        <div class="font-area">工艺安全技术人员</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.processSafetyPCRSpecialist}</div>
+      </td>
+	  #else
+	  <td colspan="2">
+        <div class="font-area"></div>
+      </td>
+	  #end
+	#if(${formData.mocApprovalWorkflow.mocType}=="PMOC" ||
+	${formData.mocApprovalWorkflow.mocType}=="TMOC" )
+      <td>
+        <div class="font-area">QMI 专家</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.qmiSpecialist}</div>
+      </td>
+    </tr>
+	  #else
+	  <td colspan="2">
+        <div class="font-area"></div>
+      </td>
+	  #end
+    <tr align="left">
+	#if(${formData.mocApprovalWorkflow.mocType}!="MSMRMOC" )
+      <td>
+        <div class="font-area">检查/腐蚀/材料技术人员</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.inspectionCorrosionMetallurgyPCRspecialist}</div>
+      </td>
+	  #else
+	  <td colspan="2">
+        <div class="font-area"></div>
+      </td>
+	  #end
+	#if(${formData.mocApprovalWorkflow.mocType}=="PMOC" ||
+	${formData.mocApprovalWorkflow.mocType}=="TMOC" )
+      <td>
+        <div class="font-area">过程控制</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.processControl}</div>
+      </td>
+	  #else
+	  <td colspan="2">
+        <div class="font-area"></div>
+      </td>
+	  #end
+    </tr>
+	#if(${formData.mocApprovalWorkflow.mocType}=="PMOC" ||
+	${formData.mocApprovalWorkflow.mocType}=="TMOC" )
+    <tr align="left">
+      <td>
+        <div class="font-area">授权技术工程师</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.authorizedTechnologist}</div>
+      </td>
+      <td>
+        <div class="font-area">仪表工程师（DCS, OT安全）</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.instrumentDCSOTSecurity}</div>
+      </td>
+    </tr>
+    <tr align="left">
+      <td>
+        <div class="font-area">指定工程师</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.nominatedEngineer}</div>
+      </td>
+      <td>
+        <div class="font-area">电气</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.electrical}</div>
+      </td>
+    </tr>
+	  #end
+    <tr align="left">
+	#if(${formData.mocApprovalWorkflow.mocType}=="MSMRMOC" )
+      <td>
+        <div class="font-area">系统监护人</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.systemGuardianDisplayName}</div>
+      </td>
+	  #else
+	  <td colspan="2">
+        <div class="font-area"></div>
+      </td>
+	  #end
+	#if(${formData.mocApprovalWorkflow.mocType}=="PMOC" ||
+	${formData.mocApprovalWorkflow.mocType}=="TMOC" )
+      <td>
+        <div class="font-area">土建</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.civil}</div>
+      </td>
+	  #else
+	  <td colspan="2">
+        <div class="font-area"></div>
+      </td>
+	  #end
+    </tr>
+    <tr align="left">
+	  <td colspan="2">
+        <div class="font-area"></div>
+      </td>
+	#if(${formData.mocApprovalWorkflow.mocType}=="PMOC" ||
+	${formData.mocApprovalWorkflow.mocType}=="TMOC"  )
+      <td>
+        <div class="font-area">动设备工程师</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.rotatingEngineer}</div>
+      </td>
+	  #else
+	  <td colspan="2">
+        <div class="font-area"></div>
+      </td>
+	  #end
+    </tr>
+    <tr align="left">
+	#if(${formData.mocApprovalWorkflow.mocType}=="MSMRMOC" )
+      <td>
+        <div class="font-area">工艺控制主任</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.leadProcessControl}</div>
+      </td>
+	  #else
+	  <td colspan="2">
+        <div class="font-area"></div>
+      </td>
+	  #end
+	#if(${formData.mocApprovalWorkflow.mocType}=="PMOC" ||
+	${formData.mocApprovalWorkflow.mocType}=="TMOC" )
+      <td>
+        <div class="font-area">消防专家</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.fireFightingDisplayName}</div>
+      </td>
+	  #else
+	  <td colspan="2">
+        <div class="font-area"></div>
+      </td>
+	  #end
+    </tr>
+	#if(${formData.mocApprovalWorkflow.mocType}=="PMOC" ||
+	${formData.mocApprovalWorkflow.mocType}=="TMOC" )
+    <tr align="left">
+      <td colspan="2">
+        <div class="font-area"></div>
+      </td>
+      <td>
+        <div class="font-area">HSE</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.hseDisplayName}</div>
+      </td>
+    </tr>
+    <tr align="left">
+      <td colspan="2">
+        <div class="font-area"></div>
+      </td>
+      <td>
+        <div class="font-area">其他</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.othersDisplayName}</div>
+      </td>
+    </tr>
+    <tr align="left">
+      <td colspan="2">
+        <div class="font-area"></div>
+      </td>
+      <td colspan="2">
+        <div class="font-value-area">如有需要，可将诸如设计室，文控中心等人员加入审批列</div>
+      </td>
+    </tr>
+	  #end
+</table>
+</div>
+<!-- 维修主任授权代理工程师选择 -->
+<div class="bg-color">
+  <table class="title-border">
+    <tr align="left">
+      <td>
+        <div class="font-area">维修主任授权代理工程师选择</div>
+      </td>
+    </tr>
+  </table>
+</div>
+<div >
+<table class="info-table" lign="left">
+    <colgroup>
+      <col style="width: 20%" />
+      <col style="width: 30%" />
+      <col style="width: 20%" />
+      <col style="width: 30%" />
+    </colgroup>
+    <tr align="left">
+		#if(${formData.mocApprovalWorkflow.mocType}=="PMOC" ||${formData.mocApprovalWorkflow.mocType}=="TMOC" )
+      <td>
+        <div class="font-area">维修主任</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.homDisplayName}</div>
+      </td>
+	  #end
+		#if(${formData.mocApprovalWorkflow.mocType}=="LSMOC" )
+      <td>
+        <div class="font-area">维修主任</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.homDisplayName}</div>
+      </td>
+	  <td colspan="2">
+        <div class="font-area"></div>
+      </td>
+	  #end
+		#if(${formData.mocApprovalWorkflow.mocType}=="PMOC" ||${formData.mocApprovalWorkflow.mocType}=="TMOC" )
+      <td>
+        <div class="font-area">项目负责人</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.projectHeadDisplayName}</div>
+      </td>
+	  #end
+    </tr>
+    <tr align="left">
+		#if(${formData.mocApprovalWorkflow.mocType}=="PMOC" ||${formData.mocApprovalWorkflow.mocType}=="TMOC" )
+      <td>
+        <div class="font-area">EM 委派工程师</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.emDelegatedEngineerDisplayName}</div>
+      </td>
+	  #end
+	  #if(${formData.mocApprovalWorkflow.mocType}=="LSMOC" )
+      <td>
+        <div class="font-area">EM 委派工程师</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.emDelegatedEngineerDisplayName}</div>
+      </td>
+	  <td colspan="2">
+        <div class="font-area"></div>
+      </td>
+	  #end
+		#if(${formData.mocApprovalWorkflow.mocType}=="PMOC" ||${formData.mocApprovalWorkflow.mocType}=="TMOC" )
+      <td>
+        <div class="font-area">提名项目工程师</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.nomineeProjectEngineerDisplayName}</div>
+      </td>
+	  #end
+    </tr>
+    <tr align="left">
+		#if(${formData.mocApprovalWorkflow.mocType}=="PMOC" ||${formData.mocApprovalWorkflow.mocType}=="TMOC" )
+      <td>
+        <div class="font-area">其他工作小组</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.otherWorkPartyDisplayName}</div>
+      </td>
+      <td>
+        <div class="font-area">操作代表</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.operatingNomineeDisplayName}</div>
+      </td>
+	  #end
+    </tr>
+	#if(${formData.mocApprovalWorkflow.mocType}=="MSMRMOC" )
+    <tr align="left">
+      <td>
+        <div class="font-area">MSMR 工作执行人</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.msmrWorkPartyDisplayName}</div>
+      </td>
+      <td colspan="2">
+        <div class="font-area"></div>
+      </td>
+    </tr>
+	#end
+</table>
+</div>
+<!-- 操作代表授权和就绪检查人选择 -->
+#if(${formData.mocApprovalWorkflow.mocType}=="PMOC" ||
+${formData.mocApprovalWorkflow.mocType}=="TMOC" ||
+${formData.mocApprovalWorkflow.mocType}=="LSMOC" )
+<div class="bg-color">
+  <table class="title-border">
+    <tr align="left">
+      <td>
+        <div class="font-area">操作代表授权和就绪检查人选择</div>
+      </td>
+    </tr>
+  </table>
+</div>
+<div>
+<table class="info-table" lign="left">
+    <colgroup>
+      <col style="width: 20%" />
+      <col style="width: 30%" />
+      <col style="width: 20%" />
+      <col style="width: 30%" />
+    </colgroup>
+    <tr align="left">
+      <td>
+        <div class="font-area">操作代表</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.operatingNominee2}</div>
+      </td>
+    </tr>
+</table>
+</div>
+#end
+<!-- 预计完成日期 -->
+<div class="bg-color">
+  <table class="title-border">
+    <tr align="left">
+      <td>
+        <div class="font-area">预计完成日期</div>
+      </td>
+    </tr>
+  </table>
+</div>
+<div>
+<table class="info-table" lign="left">
+    <colgroup>
+      <col style="width: 20%" />
+      <col style="width: 30%" />
+      <col style="width: 20%" />
+      <col style="width: 30%" />
+    </colgroup>
+    <tr align="left">
+      <td>
+        <div class="font-area">预计完成日期</div>
+      </td>
+      <td>
+        <div class="font-value-area">${formData.mocApprovalWorkflow.implementationTargetDate}</div>
+      </td>
+      <td colspan="2">
+        <div class="font-area"></div>
+      </td>
+    </tr>
+</table>
+</div>
+<!-- 工艺过程评估 -->
+#if(${formData.mocApprovalWorkflow.mocType}=="PMOC" ||
+${formData.mocApprovalWorkflow.mocType}=="TMOC" )
+<div class="bg-color">
+  <table class="title-border">
+    <tr align="left">
+      <td>
+        <div class="font-area">工艺过程评估</div>
+      </td>
+    </tr>
+  </table>
+</div>
+<div>
+  <table>
+    <colgroup>
+      <col style="width: 8%" />
+      <col style="width: 8%" />
+      <col style="width: 80%" />
+    </colgroup>
+    #foreach($info in ${formData.mocProcessAssessment})
+    <tr>
+      <td>
+		#if(${info.yesOrNO}=="yes" )
+        <div class="font-value-area">是</div>
+		#end
+		
+		#if(${info.yesOrNO}=="no" )
+        <div class="font-value-area">否</div>
+		#end
+		
+		#if(${info.yesOrNO}=="n/a" )
+        <div class="font-value-area">N/A</div>
+		#end
+      </td>
+      <td>
+        <div class="font-value-area">${info.orders}</div>
+      </td>
+      <td>
+        <div class="font-value-area">${info.assessmentContent_zh}</div>
+      </td>
+    </tr>
+    #end
+  </table>
+</div>
+#end
+<!-- 附件信息 -->
+<div class="bg-color">
+  <table class="title-border">
+    <tr align="left">
+      <td>
+        <div class="font-area">附件信息</div>
+      </td>
+    </tr>
+  </table>
+</div>
+<div style="padding-bottom:0;  border-bottom: none;">
+  <table class="info-table" style="margin-bottom:0; border-bottom: none;">
+    <colgroup>
+      <col style="width: 15%" />
+      <col style="width: 10%" />
+      <col style="width: 20%" />
+      <col style="width: 15%" />
+      <col style="width: 15%" />
+      <col style="width: 15%" />
+    </colgroup>
+    <tr>
+      <td>
+        <div class="font-area-Center">附件名称</div>
+      </td>
+      <td>
+        <div class="font-area-Center">文件类型</div>
+      </td>
+      <td>
+        <div class="font-area-Center">上传时间</div>
+      </td>
+      <td>
+        <div class="font-area-Center">节点名称</div>
+      </td>
+      <td>
+        <div class="font-area-Center">上传人名称</div>
+      </td>
+      <td>
+        <div class="font-area-Center">备注</div>
+      </td>
+    </tr>
+    #foreach($info in ${formData.mocFileInfo})
+    <tr>
+      <td>
+        <div class="font-value-area">${info.fileName}</div>
+      </td>
+      <td>
+        <div class="font-value-area">${info.fileType}</div>
+      </td>
+      <td>
+        <div class="font-value-area">${info.uploadDate}</div>
+      </td>
+      <td>
+        <div class="font-value-area">${info.nodeName}</div>
+      </td>
+      <td>
+        <div class="font-value-area">${info.employeeName}</div>
+      </td>
+      <td>
+        <div class="font-value-area">${info.remark}</div>
+      </td>
+    </tr>
+    #end
+  </table>
+</div>
+<!-- 文档列表 -->
+#if(${formData.mocApprovalWorkflow.mocType}=="PMOC" ||
+${formData.mocApprovalWorkflow.mocType}=="TMOC" ||
+${formData.mocApprovalWorkflow.mocType}=="MSMRMOC" )
+<div class="bg-color">
+  <table class="title-border">
+    <tr align="left">
+      <td>
+        <div class="font-area">文档列表</div>
+      </td>
+    </tr>
+  </table>
+</div>
+<div >
+  <table>
+    <colgroup>
+      <col style="width: 15%" />
+      <col style="width: 10%" />
+      <col style="width: 10%" />
+      <col style="width: 10%" />
+      <col style="width: 55%" />
+    </colgroup>
+    <tr>
+      <td>
+        <div class="font-area-Center">角色名</div>
+      </td>
+      <td>
+        <div class="font-area-Center">审查人</div>
+      </td>
+      <td>
+        <div class="font-area-Center">时间</div>
+      </td>
+      <td>
+        <div class="font-area-Center">文档更新需求</div>
+      </td>
+      <td>
+        <div class="font-area-Center">参考</div>
+      </td>
+    </tr>
+    #foreach($info in ${formData.mocDocumentList})
+    <tr>
+      <td>
+        <div class="font-value-area">${info.code}</div>
+      </td>
+      <td>
+        <div class="font-value-area">${info.reviewer}</div>
+      </td>
+      <td>
+        <div class="font-value-area">${info.startDate}</div>
+      </td>
+      <td>
+        <div class="font-value-area">${info.documentUpdate}</div>
+      </td>
+      <td>
+        <div class="font-value-area">
+			<table>
+				<colgroup>
+				  <col style="width: 10%" />
+				  <col style="width: 80%" />
+				  <col style="width: 10%" />
+				</colgroup>
+				<tr>
+				  <td>
+					<div class="font-area-Center">选择</div>
+				  </td>
+				  <td>
+					<div class="font-area-Center">图纸/文档标题</div>
+				  </td>
+				  <td>
+					<div class="font-area-Center">索引</div>
+				  </td>
+				</tr>				
+				#foreach($info2 in ${info.reference})
+				<tr>
+				  <td>
+					<div class="font-area-Center" style="text-align: center;">${info2.section}</div>
+				  </td>
+				  <td>
+					<div class="font-area-Center">${info2.documentTitle}</div>
+				  </td>
+				  <td>
+					<div class="font-area-Center" style="text-align: center;">${info2.indexs}</div>
+				  </td>
+				</tr>
+				#end
+			</table>
+		</div>
+      </td>
+    </tr>
+    #end
+  </table>
+</div>
+#end
+<!-- 文档更新列表 -->
+#if(${formData.mocApprovalWorkflow.mocType}=="PMOC" ||
+${formData.mocApprovalWorkflow.mocType}=="TMOC" ||
+${formData.mocApprovalWorkflow.mocType}=="MSMRMOC" )
+<div class="bg-color">
+  <table class="title-border">
+    <tr align="left">
+      <td>
+        <div class="font-area">文档更新列表</div>
+      </td>
+    </tr>
+  </table>
+</div>
+<div >
+  <table>
+    <colgroup>
+      <col style="width: 20%" />
+      <col style="width: 10%" />
+      <col style="width: 50%" />
+      <col style="width: 20%" />
+    </colgroup>
+    <tr>
+      <td>
+        <div class="font-area-Center">填写人</div>
+      </td>
+      <td>
+        <div class="font-area-Center">文档号</div>
+      </td>
+      <td>
+        <div class="font-area-Center">文档标题</div>
+      </td>
+      <td>
+        <div class="font-area-Center">文档更新人</div>
+      </td>
+    </tr>
+    #foreach($info in ${formData.mocDocumentUpdateList})
+    <tr>
+      <td>
+        <div class="font-value-area">${info.filledBy}</div>
+      </td>
+      <td>
+        <div class="font-value-area">${info.documentNO}</div>
+      </td>
+      <td>
+        <div class="font-value-area">${info.documentTitle}</div>
+      </td>
+      <td>
+        <div class="font-value-area">${info._toBeUpdatedBy}</div>
+      </td>
+    </tr>
+    #end
+  </table>
+</div>
+#end
+#paiVmParse("commonPrintTemplate_end")
